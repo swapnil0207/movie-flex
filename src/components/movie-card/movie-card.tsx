@@ -2,7 +2,7 @@ import "./movie-card.css";
 
 type MovieCardProps = {
 	title: string;
-	rating: string;
+	rating: number;
 	imageSrc: string;
 };
 

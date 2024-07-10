@@ -62,11 +62,7 @@ function App() {
 					activeGenre={activeGenre}
 					setActiveGenre={setActiveGenre}
 				/>
-				<MoviesContainer
-					year={year}
-					activeGenre={activeGenre}
-					setActiveGenre={setActiveGenre}
-				/>
+				<MoviesContainer year={year} activeGenre={activeGenre} />
 			</div>
 		</Provider>
 	);

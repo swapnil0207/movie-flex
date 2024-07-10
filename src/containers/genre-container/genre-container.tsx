@@ -1,10 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Logo from "../../assets/images/logo.png";
 import { fetchGenre } from "../../thunk/genre-thunk/genre-thunk";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux-hook";
 import { fetchMovieList } from "../../thunk/movie-list-thunk/movie-list-thunk";
 
-const GenreContainer = ({ year, activeGenre, setActiveGenre }: any) => {
+type genreContainerProps = {
+	year: number;
+	activeGenre: number;
+	setActiveGenre: Dispatch<SetStateAction<number>>;
+};
+
+const GenreContainer = ({
+	year,
+	activeGenre,
+	setActiveGenre,
+}: genreContainerProps) => {
 	const dispatch = useAppDispatch();
 
 	const [isGenreUpdated, setIsGenreUpdated] = useState(false);

@@ -2,11 +2,17 @@ import React, { useEffect, useState } from "react";
 import MovieCard from "../../components/movie-card";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux-hook";
 import { fetchMovieList } from "../../thunk/movie-list-thunk/movie-list-thunk";
+import { IMovieList } from "../../models";
 
-const MoviesContainer = ({ year, activeGenre }: any) => {
+type moviesContainerProps = {
+	year: number;
+	activeGenre: number;
+};
+
+const MoviesContainer = ({ year, activeGenre }: moviesContainerProps) => {
 	const dispatch = useAppDispatch();
 
-	const [movieList, setMovieList] = useState([]);
+	const [movieList, setMovieList] = useState<IMovieList[] | []>([]);
 
 	const movieListStore = useAppSelector((state) => state?.movieList?.movies);
 
@@ -18,7 +24,7 @@ const MoviesContainer = ({ year, activeGenre }: any) => {
 		const callApi = async () => {
 			if (
 				!movieListStore?.find(
-					(item: any) => new Date(item?.release_date)?.getFullYear() === year
+					(item) => new Date(item?.release_date)?.getFullYear() === year
 				)
 			) {
 				await dispatch(
@@ -40,7 +46,7 @@ const MoviesContainer = ({ year, activeGenre }: any) => {
 
 	return (
 		<div className="container">
-			{movieList?.map((movieItem: any, index: number, arr: any) => {
+			{movieList?.map((movieItem, index: number, arr) => {
 				return (
 					<React.Fragment key={index}>
 						{new Date(arr?.[index - 1]?.release_date)?.getFullYear() !==

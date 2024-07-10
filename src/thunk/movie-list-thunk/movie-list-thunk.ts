@@ -1,9 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+interface IParams {
+	searchTerm?: string;
+	year?: number;
+	genreId?: number;
+	reset?: boolean;
+}
+
 export const fetchMovieList = createAsyncThunk(
 	"fetchMovieList",
-	async (params: any) => {
+	async (params: IParams) => {
 		const apiResponse = await axios.get(
 			params?.searchTerm
 				? `https://api.themoviedb.org/3/search/movie?query=${params?.searchTerm}&api_key=2dca580c2a14b55200e784d157207b4d`

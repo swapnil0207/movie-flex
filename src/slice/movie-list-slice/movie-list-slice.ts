@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchMovieList } from "../../thunk/movie-list-thunk/movie-list-thunk";
+import { MovieListInitialState } from "../../models";
 
-const initialState: any = { movies: [] };
+const initialState: MovieListInitialState = { movies: [] };
 
 const movieListSlice = createSlice({
 	name: "movieList",
@@ -12,14 +13,14 @@ const movieListSlice = createSlice({
 			return {
 				...state,
 				movies: action?.payload?.reset
-					? [...new Set([...action?.payload?.list])]?.sort((a: any, b: any) => {
+					? [...new Set([...action?.payload?.list])]?.sort((a, b) => {
 							return (
 								new Date(a?.release_date).getTime() -
 								new Date(b?.release_date).getTime()
 							);
 					  })
 					: [...new Set([...state?.movies, ...action?.payload?.list])]?.sort(
-							(a: any, b: any) => {
+							(a, b) => {
 								return (
 									new Date(a?.release_date).getTime() -
 									new Date(b?.release_date).getTime()
