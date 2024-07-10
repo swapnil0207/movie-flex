@@ -16,7 +16,20 @@ const MoviesContainer = ({ year, activeGenre }: any) => {
 
 	useEffect(() => {
 		const callApi = async () => {
-			await dispatch(fetchMovieList({ year, genreId: activeGenre }));
+			if (
+				!movieListStore?.find(
+					(item: any) => new Date(item?.release_date)?.getFullYear() === year
+				)
+			) {
+				await dispatch(
+					fetchMovieList({
+						year,
+						genreId: activeGenre,
+						// searchTerm: "fifty+shades",
+						// reset: true,
+					})
+				);
+			}
 		};
 		if (year) {
 			callApi();

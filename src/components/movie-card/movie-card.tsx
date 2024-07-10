@@ -20,7 +20,7 @@ const MovieCard = ({ title, rating, imageSrc }: MovieCardProps) => {
 				{title?.length > 15 ? "..." : ""} */}
 				{title}
 			</h3>
-			<h6>{rating}</h6>
+			<h6>{Number(rating)?.toFixed(1)}</h6>
 		</div>
 	);
 };
